@@ -28,15 +28,28 @@ public class User {
     @Column(length = 1000)
     private String about;
 
+    // ---- FIXED FOR AIVEN MYSQL ----
     @ElementCollection
+    @CollectionTable(
+        name = "user_skills_to_teach",
+        joinColumns = @JoinColumn(name = "user_id")
+    )
+    @OrderColumn(name = "list_index")   // ⭐ fixes primary key issue
+    @Column(name = "skill")
     private List<String> skillsToTeach;
 
     @ElementCollection
+    @CollectionTable(
+        name = "user_skills_to_learn",
+        joinColumns = @JoinColumn(name = "user_id")
+    )
+    @OrderColumn(name = "list_index")   // ⭐ fixes primary key issue
+    @Column(name = "skill")
     private List<String> skillsToLearn;
 
     public User() {}
 
-    // Getters & Setters
+    // ---- GETTERS & SETTERS ----
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
