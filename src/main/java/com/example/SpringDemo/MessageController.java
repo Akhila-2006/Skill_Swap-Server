@@ -12,7 +12,10 @@ public class MessageController {
     
     @Autowired
     private MessageRepository messageRepository;
-    
+    @GetMapping("/all")
+public ApiResponse<List<Message>> getAllMessages() {
+    return ApiResponse.success(messageRepository.findAll());
+}
     @GetMapping("/conversation/{userId1}/{userId2}")
     public ApiResponse<List<Message>> getConversation(
             @PathVariable Long userId1,
