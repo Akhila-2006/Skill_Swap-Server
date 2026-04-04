@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*") // allow requests from frontend
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true") // allow requests from frontend
 public class UserController {
 
     @Autowired
